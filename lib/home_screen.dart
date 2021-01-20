@@ -1,6 +1,15 @@
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  double _imageOpacityValue = 1.0;
+  bool _enableIncrement = true;
+  int _counterValue = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -12,9 +21,12 @@ class HomeScreen extends StatelessWidget {
           Expanded(
             flex: 3,
             child: Center(
-              child: Image.network(
-                'https://cdn.pixabay.com/photo/2015/11/08/09/05/beach-1033294_1280.jpg',
-                width: 300,
+              child: Opacity(
+                opacity: _imageOpacityValue,
+                child: Image.network(
+                  'https://cdn.pixabay.com/photo/2015/11/08/09/05/beach-1033294_1280.jpg',
+                  width: 300,
+                ),
               ),
             ),
           ),
@@ -31,7 +43,7 @@ class HomeScreen extends StatelessWidget {
                     vertical: 5,
                   ),
                   child: Text(
-                    'Count: 0',
+                    'Count: $_counterValue',
                     style: TextStyle(
                       fontSize: 25,
                       color: Colors.white,
@@ -54,13 +66,23 @@ class HomeScreen extends StatelessWidget {
                         children: [
                           Text('Enable increment'),
                           Switch(
-                            value: true,
-                            onChanged: (_) {},
+                            value: _enableIncrement,
+                            onChanged: (val) {
+                              setState(() {
+                                _enableIncrement = val;
+                              });
+                            },
                           ),
                         ],
                       ),
                       RaisedButton.icon(
-                        onPressed: () {},
+                        onPressed: _enableIncrement
+                            ? () {
+                                setState(() {
+                                  _counterValue++;
+                                });
+                              }
+                            : null,
                         icon: Icon(Icons.add),
                         label: Text("Increment"),
                         color: Theme.of(context).primaryColor,
@@ -69,8 +91,12 @@ class HomeScreen extends StatelessWidget {
                     ],
                   ),
                   Slider(
-                    value: 0.1,
-                    onChanged: (_) {},
+                    value: _imageOpacityValue,
+                    onChanged: (newValue) {
+                      setState(() {
+                        _imageOpacityValue = newValue;
+                      });
+                    },
                   )
                 ],
               ),
