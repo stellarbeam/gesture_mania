@@ -1,0 +1,15 @@
+Create an application
+
+Add an image (you can show a static image here)
+Add a ‘Count’ label which shows a count.
+Add a ‘Increment’ button. 
+    Tapping on the button should increase the count shown by the label by 1.
+Tapping on the main view (i.e. outside the button / label / image) should decrease the count shown by the label by 1.
+
+The background color for the custom view should change as follows (Optional - animate this color change):
+    Green if the count is positive
+    Red if the count is negative
+    White if the count is 0
+
+Add a switch which can enable / disable the ‘Increment’ button 
+Add a slider which goes from 0 to 1. The opacity of the image should change as per this slider.
