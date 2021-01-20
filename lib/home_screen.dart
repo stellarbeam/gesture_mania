@@ -39,7 +39,8 @@ class _HomeScreenState extends State<HomeScreen> {
       body: GestureDetector(
         behavior: HitTestBehavior.deferToChild,
         onTap: _decrementCount,
-        child: Container(
+        child: AnimatedContainer(
+          duration: Duration(milliseconds: 500),
           color: _getColourFromCount(_counterValue),
           child: Column(
             children: [
