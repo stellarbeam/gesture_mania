@@ -49,14 +49,30 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Gesture Mania"),
+        title: const Text("Gesture Mania"),
       ),
       body: GestureDetector(
         onTap: _decrementCount,
         child: AnimatedContainer(
-          duration: Duration(milliseconds: 500),
+          duration: const Duration(milliseconds: 500),
           color: _getColourFromCount(_counterValue),
-          child: Column(
+          child: _buildMainView(),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildMainView() {
+    Widget controls = Controls(
+      _enableIncrement,
+      _incrementCount,
+      _toggleEnableIncrement,
+      _imageOpacityValue,
+      _setImageOpacity,
+    );
+
+    return MediaQuery.of(context).orientation == Orientation.portrait
+        ? Column(
             children: [
               Expanded(
                 flex: 3,
@@ -66,19 +82,25 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: CounterLabel(_counterValue),
               ),
               Expanded(
-                child: Controls(
-                  _enableIncrement,
-                  _incrementCount,
-                  _toggleEnableIncrement,
-                  _imageOpacityValue,
-                  _setImageOpacity,
-                ),
+                child: controls,
               ),
               SizedBox(height: 20),
             ],
-          ),
-        ),
-      ),
-    );
+          )
+        : Row(
+            children: [
+              Expanded(
+                child: TransluscentImage(_imageOpacityValue),
+              ),
+              Expanded(
+                child: Column(
+                  children: [
+                    Expanded(child: CounterLabel(_counterValue)),
+                    Expanded(child: controls),
+                  ],
+                ),
+              ),
+            ],
+          );
   }
 }
