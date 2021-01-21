@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gesture_mania/widgets/counter_label.dart';
 import 'package:gesture_mania/widgets/transluscent_image.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -50,29 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               Expanded(
                 flex: 1,
-                child: Center(
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(3),
-                    child: Container(
-                      height: 40,
-                      color: Theme.of(context).primaryColor,
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 20,
-                        vertical: 5,
-                      ),
-                      child: GestureDetector(
-                        child: Text(
-                          'Count: $_counterValue',
-                          style: TextStyle(
-                            fontSize: 25,
-                            color: Colors.white,
-                          ),
-                        ),
-                        onTap: () {},
-                      ),
-                    ),
-                  ),
-                ),
+                child: CounterLabel(_counterValue),
               ),
               Expanded(
                 child: Padding(
