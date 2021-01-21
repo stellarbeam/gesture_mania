@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gesture_mania/widgets/transluscent_image.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -37,7 +38,6 @@ class _HomeScreenState extends State<HomeScreen> {
         title: Text("Gesture Mania"),
       ),
       body: GestureDetector(
-        behavior: HitTestBehavior.deferToChild,
         onTap: _decrementCount,
         child: AnimatedContainer(
           duration: Duration(milliseconds: 500),
@@ -46,18 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
             children: [
               Expanded(
                 flex: 3,
-                child: Center(
-                  child: Opacity(
-                    opacity: _imageOpacityValue,
-                    child: GestureDetector(
-                      child: Image.network(
-                        'https://cdn.pixabay.com/photo/2015/11/08/09/05/beach-1033294_1280.jpg',
-                        width: 300,
-                      ),
-                      onTap: () {},
-                    ),
-                  ),
-                ),
+                child: TransluscentImage(_imageOpacityValue),
               ),
               Expanded(
                 flex: 1,
