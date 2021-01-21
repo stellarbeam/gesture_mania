@@ -19,7 +19,7 @@ class Controls extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 10),
+      padding: EdgeInsets.symmetric(horizontal: 30),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
@@ -28,10 +28,12 @@ class Controls extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  GestureDetector(
-                    child: Text('Enable increment'),
-                    onTap: () {},
-                  ),
+                  if (MediaQuery.of(context).orientation ==
+                      Orientation.portrait)
+                    GestureDetector(
+                      child: const Text('Enable increment'),
+                      onTap: () {},
+                    ),
                   Switch(
                     value: _enableIncrement,
                     onChanged: _toggleEnableIncrement,
@@ -42,8 +44,8 @@ class Controls extends StatelessWidget {
                 onTap: () {},
                 child: RaisedButton.icon(
                   onPressed: _enableIncrement ? _incrementCount : null,
-                  icon: Icon(Icons.add),
-                  label: Text("Increment"),
+                  icon: const Icon(Icons.add),
+                  label: const Text("Increment"),
                   color: Theme.of(context).primaryColor,
                   textColor: Colors.white,
                 ),
