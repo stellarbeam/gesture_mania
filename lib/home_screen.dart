@@ -48,14 +48,12 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: GestureDetector(
-          onTap: _decrementCount,
-          child: AnimatedContainer(
-            duration: const Duration(milliseconds: 500),
-            color: _getColourFromCount(_counterValue),
-            child: _buildMainView(),
-          ),
+      body: GestureDetector(
+        onTap: _decrementCount,
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 500),
+          color: _getColourFromCount(_counterValue),
+          child: SafeArea(child: _buildMainView()),
         ),
       ),
     );
