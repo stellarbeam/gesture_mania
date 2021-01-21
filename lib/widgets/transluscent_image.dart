@@ -13,8 +13,8 @@ class TransluscentImage extends StatelessWidget {
         child: GestureDetector(
           child: Padding(
             padding: const EdgeInsets.all(15),
-            child: Image.network(
-              'https://cdn.pixabay.com/photo/2015/11/08/09/05/beach-1033294_1280.jpg',
+            child: Image.asset(
+              'assets/images/beach.jpg',
               fit: BoxFit.contain,
             ),
           ),
