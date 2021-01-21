@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gesture_mania/widgets/controls.dart';
 import 'package:gesture_mania/widgets/counter_label.dart';
 import 'package:gesture_mania/widgets/transluscent_image.dart';
 
@@ -32,6 +33,18 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
+  void _toggleEnableIncrement(bool newValue) {
+    setState(() {
+      _enableIncrement = newValue;
+    });
+  }
+
+  void _setImageOpacity(double newValue) {
+    setState(() {
+      _imageOpacityValue = newValue;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,57 +63,15 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: TransluscentImage(_imageOpacityValue),
               ),
               Expanded(
-                flex: 1,
                 child: CounterLabel(_counterValue),
               ),
               Expanded(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 10),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Row(
-                            children: [
-                              GestureDetector(
-                                child: Text('Enable increment'),
-                                onTap: () {},
-                              ),
-                              Switch(
-                                value: _enableIncrement,
-                                onChanged: (val) {
-                                  setState(() {
-                                    _enableIncrement = val;
-                                  });
-                                },
-                              ),
-                            ],
-                          ),
-                          GestureDetector(
-                            onTap: () {},
-                            child: RaisedButton.icon(
-                              onPressed:
-                                  _enableIncrement ? _incrementCount : null,
-                              icon: Icon(Icons.add),
-                              label: Text("Increment"),
-                              color: Theme.of(context).primaryColor,
-                              textColor: Colors.white,
-                            ),
-                          ),
-                        ],
-                      ),
-                      Slider(
-                        value: _imageOpacityValue,
-                        onChanged: (newValue) {
-                          setState(() {
-                            _imageOpacityValue = newValue;
-                          });
-                        },
-                      )
-                    ],
-                  ),
+                child: Controls(
+                  _enableIncrement,
+                  _incrementCount,
+                  _toggleEnableIncrement,
+                  _imageOpacityValue,
+                  _setImageOpacity,
                 ),
               ),
               SizedBox(height: 20),
