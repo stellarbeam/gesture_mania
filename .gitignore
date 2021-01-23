@@ -39,3 +39,6 @@ app.*.symbols
 
 # Obfuscation related
 app.*.map.json
+
+# Private key related
+gesture-mania-firebase-adminsdk-pbstu-ea9732e3fc.json
