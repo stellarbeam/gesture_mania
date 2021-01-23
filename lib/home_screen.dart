@@ -29,10 +29,17 @@ class _HomeScreenState extends State<HomeScreen> {
     await FirebaseAnalytics().logEvent(name: 'increment', parameters: null);
   }
 
-  void _decrementCount() {
+  void _decrementCount(TapUpDetails details) async {
     setState(() {
       _counterValue--;
     });
+    await FirebaseAnalytics().logEvent(
+      name: 'decrement',
+      parameters: {
+        'x': details.globalPosition.dx,
+        'y': details.globalPosition.dy,
+      },
+    );
   }
 
   void _toggleEnableIncrement(bool newValue) {
@@ -51,11 +58,13 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: GestureDetector(
-        onTap: _decrementCount,
+        onTapUp: (details) => _decrementCount(details),
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 500),
           color: _getColourFromCount(_counterValue),
-          child: SafeArea(child: _buildMainView()),
+          child: SafeArea(
+            child: _buildMainView(),
+          ),
         ),
       ),
     );
@@ -94,8 +103,12 @@ class _HomeScreenState extends State<HomeScreen> {
               Expanded(
                 child: Column(
                   children: [
-                    Expanded(child: CounterLabel(_counterValue)),
-                    Expanded(child: controls),
+                    Expanded(
+                      child: CounterLabel(_counterValue),
+                    ),
+                    Expanded(
+                      child: controls,
+                    ),
                   ],
                 ),
               ),
