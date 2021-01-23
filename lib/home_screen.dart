@@ -1,3 +1,4 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:gesture_mania/widgets/controls.dart';
 import 'package:gesture_mania/widgets/counter_label.dart';
@@ -21,10 +22,11 @@ class _HomeScreenState extends State<HomeScreen> {
       return Colors.red;
   }
 
-  void _incrementCount() {
+  void _incrementCount() async {
     setState(() {
       _counterValue++;
     });
+    await FirebaseAnalytics().logEvent(name: 'increment', parameters: null);
   }
 
   void _decrementCount() {

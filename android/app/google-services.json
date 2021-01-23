@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "87558092636",
+    "project_id": "gesture-mania",
+    "storage_bucket": "gesture-mania.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:87558092636:android:0d17fdea1af9349686f399",
+        "android_client_info": {
+          "package_name": "com.example.gesture_mania"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "87558092636-k3dll2u3v1vbhlqb0kbjoco9k0liveeh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB-8qdXIBZ9ncrY3HcwIcPglZ46yt1FD1k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "87558092636-k3dll2u3v1vbhlqb0kbjoco9k0liveeh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
