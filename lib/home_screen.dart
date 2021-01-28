@@ -1,5 +1,7 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:gesture_mania/widgets/controls.dart';
 import 'package:gesture_mania/widgets/counter_label.dart';
 import 'package:gesture_mania/widgets/transluscent_image.dart';
@@ -13,6 +15,15 @@ class _HomeScreenState extends State<HomeScreen> {
   double _imageOpacityValue = 1.0;
   bool _enableIncrement = true;
   int _counterValue = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    Firebase.initializeApp().whenComplete(() {
+      print("Firebase initialized.");
+      setState(() {});
+    });
+  }
 
   Color _getColourFromCount(value) {
     if (value == 0) return Colors.white;
@@ -52,6 +63,8 @@ class _HomeScreenState extends State<HomeScreen> {
     setState(() {
       _imageOpacityValue = newValue;
     });
+    // WARN: Force a crash when tring to change image opacity through slider
+    FirebaseCrashlytics.instance.crash();
   }
 
   @override
